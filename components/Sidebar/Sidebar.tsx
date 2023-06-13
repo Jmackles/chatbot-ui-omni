@@ -1,12 +1,11 @@
 import { IconFolderPlus, IconMistOff, IconPlus } from '@tabler/icons-react';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-
+import { Calendar } from '../Calendar/Calendar'; // Import the Calendar component
 import {
   CloseSidebarButton,
   OpenSidebarButton,
 } from './components/OpenCloseButton';
-
 import Search from '../Search';
 
 interface Props<T> {
@@ -78,6 +77,7 @@ const Sidebar = <T,>({
             <IconFolderPlus size={16} />
           </button>
         </div>
+
         <Search
           placeholder={t('Search...') || ''}
           searchTerm={searchTerm}
@@ -111,6 +111,9 @@ const Sidebar = <T,>({
           )}
         </div>
         {footerComponent}
+
+        {/* Add the Calendar component here */}
+        <Calendar />
       </div>
 
       <CloseSidebarButton onClick={toggleOpen} side={side} />
