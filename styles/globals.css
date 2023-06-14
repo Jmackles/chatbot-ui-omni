@@ -41,3 +41,24 @@ html {
 pre:has(div.codeblock) {
   padding: 0;
 }
+
+/* Add the following styles */
+
+.page {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  flex: 0 0 auto;
+  width: 260px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.main {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
