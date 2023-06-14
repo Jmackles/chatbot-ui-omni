@@ -1,3 +1,4 @@
+import { useState } from 'react'; // Import useState
 import { IconFolderPlus, IconMistOff, IconPlus } from '@tabler/icons-react';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -39,6 +40,8 @@ const Sidebar = <T,>({
   handleCreateFolder,
   handleDrop,
 }: Props<T>) => {
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false); // Add state for the calendar
+
   const { t } = useTranslation('promptbar');
 
   const allowDrop = (e: any) => {
@@ -76,6 +79,11 @@ const Sidebar = <T,>({
           >
             <IconFolderPlus size={16} />
           </button>
+
+          {/* Add a button to toggle the calendar */}
+          <button onClick={() => setIsCalendarOpen(!isCalendarOpen)}>
+            {isCalendarOpen ? 'Close Calendar' : 'Open Calendar'}
+          </button>
         </div>
 
         <Search
@@ -110,10 +118,11 @@ const Sidebar = <T,>({
             </div>
           )}
         </div>
-        {footerComponent}
 
-        {/* Add the Calendar component here */}
-        <Calendar />
+        {/* Conditionally render the Calendar component */}
+        {isCalendarOpen && <Calendar />}
+
+        {footerComponent}
       </div>
 
       <CloseSidebarButton onClick={toggleOpen} side={side} />

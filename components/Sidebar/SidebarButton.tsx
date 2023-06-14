@@ -1,19 +1,19 @@
-import { FC } from 'react';
+// SidebarButton.tsx
+import React, { FC } from "react";
 
-interface Props {
+interface SidebarButtonProps {
   text: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   onClick: () => void;
 }
 
-export const SidebarButton: FC<Props> = ({ text, icon, onClick }) => {
+const SidebarButton: FC<SidebarButtonProps> = ({ text, icon, onClick }) => {
   return (
-    <button
-      className="flex w-full cursor-pointer select-none items-center gap-3 rounded-md py-3 px-3 text-[14px] leading-3 text-white transition-colors duration-200 hover:bg-gray-500/10"
-      onClick={onClick}
-    >
-      <div>{icon}</div>
+    <button onClick={onClick} className="...">
+      {icon}
       <span>{text}</span>
     </button>
   );
 };
+
+export default SidebarButton;
