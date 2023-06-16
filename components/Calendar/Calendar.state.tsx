@@ -1,27 +1,33 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import CalendarContext from './Calendar.context';
 
-const useCalendarState = () => {
-  const [currentView, setCurrentView] = useState('month');
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [events, setEvents] = useState([]);
-  const [startOfWeek, setStartOfWeek] = useState('Sunday');
-  const [timeFormat, setTimeFormat] = useState('12-hour');
-  const [eventColor, setEventColor] = useState('#3788d8');
+interface CalendarState {
+  currentView: string;
+  selectedDate: Date | null;
+  events: any[];
+}
 
-  return {
-    currentView,
-    setCurrentView,
-    currentDate,
-    setCurrentDate,
-    events,
-    setEvents,
-    startOfWeek,
-    setStartOfWeek,
-    timeFormat,
-    setTimeFormat,
-    eventColor,
-    setEventColor,
-  };
+interface CalendarProviderProps {
+  children: React.ReactNode;
+}
+
+export const CalendarProvider = ({ children }: CalendarProviderProps) => {
+  const [currentView, setCurrentView] = useState('');
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [events, setEvents] = useState<any[]>([]);
+
+  return (
+    <CalendarContext.Provider
+      value={{
+        currentView,
+        setCurrentView,
+        selectedDate,
+        setSelectedDate,
+        events,
+        setEvents,
+      }}
+    >
+      {children}
+    </CalendarContext.Provider>
+  );
 };
-
-export default useCalendarState;

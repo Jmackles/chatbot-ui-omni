@@ -1,7 +1,9 @@
-import React, { createContext, ReactNode } from 'react';
-import useCalendarState from './Calendar.state';
+import { createContext, ReactNode } from 'react';
+import { useCalendarState } from './Calendar.state';
 
-const CalendarContext = createContext<ReturnType<typeof useCalendarState> | null>(null);
+const CalendarContext = createContext<any>({});
+
+export default CalendarContext;
 
 export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   const calendarState = useCalendarState();
@@ -11,5 +13,3 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
     </CalendarContext.Provider>
   );
 };
-
-export default CalendarContext;
